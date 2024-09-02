@@ -3,38 +3,9 @@
 } -->
 
 <div class="fruitlist_content">
-    @for(fruit of fruitlist; track fruit.name){
-        <section class="singleFruitBox">
-            <div>
-                <img src="./assets/img/fruits/{{fruit.img}}" alt="" srcset="">
-            </div>
-            <div>
-                <h2> {{fruit.name}}</h2>
-                <div>
-                    <p><b>Bewertung:</b></p>
-                    <div>
-                        <img src="./assets/img/stars/star.svg" alt="" srcset="">
-                        <img src="./assets/img/stars/star.svg" alt="" srcset="">
-                        <img src="./assets/img/stars/star.svg" alt="" srcset="">
-                        <img src="./assets/img/stars/star-half.svg" alt="" srcset="">
-                        <img src="./assets/img/stars/star-empty.svg" alt="" srcset="">
-                        <p>({{fruit.stars}})</p>
-                    </div>
-                </div>
-                <div><b>Art:</b><br>{{fruit.genus}}</div>
-                <div><b>Beschreibung:</b><br>{{fruit.description}}</div>
-                <div>
-                    <div>
-                        @for(review of fruit.reviews; track review) {
-                            <div><b>{{review.name}}:</b><br>{{review.text}}</div>
-                        } @empty {
-                            Bisher keine Kommentare!
-                        }
-                    </div>
-                    <div><input type="text"><button><img src="./assets/img/arrow-35-32.png" alt="" srcset=""></button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    @for(singlefruit of fruitlistdata.fruitlist; track singlefruit.name; let index = $index){
+
+        <app-singlefruit (fruitname)="addComment($event, index)" [fruit]="singlefruit"></app-singlefruit> 
+
     }
 </div>
